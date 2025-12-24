@@ -1,0 +1,122 @@
+<div id="main-wrapper" class="form-login-register">
+    <div class="container-fluid px-0">
+        <div class="row g-0 min-vh-100">
+            <div class="col-md-6 col-lg-7 bg-light">
+                <div class="hero-wrap d-flex align-items-center h-100">
+                    <div class="hero-mask opacity-8"></div>
+                    <div class="hero-bg hero-bg-scroll" style="background-image:url('images/shopping.jpeg');">
+                    </div>
+                    <div class="hero-content mx-auto w-100 h-100 d-flex flex-column">
+                        <div class="container">
+                            <div class="row g-0 mt-1">
+                                <div class="col-11 col-md-10 col-lg-9 mx-auto">
+                                    <h1 class="text-13 text-white text-shadow fw-200 mt-4">
+                                        Find what you love <br />
+                                        Love what you buy
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-5 d-flex flex-column align-items-center">
+                <div class="container p-3 bg-grey">
+                    <div class="row g-0">
+                        <div class="col-11 col-md-10 col-lg-9 mx-auto">
+                            <div>
+                                <a class="fw-600 text-6 text-dark" routerLink="/" title="Store">
+                                     E-Shoppe
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container my-auto py-5">
+                    <div class="row g-0">
+                        <div class="col-11 col-md-10 col-lg-9 mx-auto">
+                            <h3 class="text-12 mb-4">Sign Up</h3>
+                            <form id="signupForm" [formGroup]="registerFormGroup">
+                                <label class="form-label fw-500" for="fullName">Full Name</label>
+                                <div
+                                    [classList]="registerForm['name'].invalid && isSubmitted?'input-group':'mb-3 input-group'">
+                                    <input type="text" class="form-control bg-light border-light" id="fullName"
+                                        [class.is-invalid]="registerForm['name'].invalid && isSubmitted"
+                                        placeholder="Full Name" formControlName="name">
+                                    <span class="input-group-text text-muted">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                </div>
+                                @if (registerForm['name'].invalid && isSubmitted) {
+                                <small class="d-block text-danger">
+                                    Name is required
+                                </small>
+                                }
+                                <label class="form-label fw-500" for="emailAddress">Email Address</label>
+                                <div
+                                    [classList]="registerForm['email'].invalid && isSubmitted?'input-group':'mb-3 input-group'">
+                                    <input type="email" class="form-control bg-light border-light" id="emailAddress"
+                                        [class.is-invalid]="registerForm['email'].invalid && isSubmitted"
+                                        placeholder="Email Address" formControlName="email">
+                                    <span class="input-group-text text-muted">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                </div>
+                                @if (registerForm['email'].invalid && isSubmitted) {
+                                <small class=" d-block text-danger">
+                                    @if (registerForm['email'].errors?.['required']) {
+                                    <span>Email is required</span>
+                                    }
+                                    @if (registerForm['email'].errors?.['email']) {
+                                    <span>Email is invalid</span>
+                                    }
+                                </small>
+                                }
+                                <label class="form-label fw-500" for="loginPassword">Password</label>
+                                <div
+                                    [classList]="registerForm['password'].invalid && isSubmitted?'input-group':'mb-3 input-group'">
+                                    <input [type]="passwordVisible?'text':'password'"
+                                        class="form-control form-control-lg bg-light border-light" id="loginPassword"
+                                        [class.is-invalid]="registerForm['password'].invalid && isSubmitted"
+                                        placeholder="Password" formControlName="password">
+                                    <span class="input-group-text text-muted" (click)="visibilityToggle()"
+                                        style="cursor: pointer;">
+                                        <i [classList]="passwordVisible?'fas fa-eye':'fas fa-eye-slash'"></i>
+                                    </span>
+                                </div>
+                                @if (registerForm['password'].invalid && isSubmitted) {
+                                <small class="d-block text-danger">
+                                    Password is required
+                                </small>
+                                }
+                                <div class="form-check my-4">
+                                    <input id="agree" name="agree" class="form-check-input" type="checkbox">
+                                    <label class="form-check-label" for="agree">
+                                        I agree to the <a href="#">Terms</a> and <a href="#">Privacy</a>.
+                                    </label>
+                                </div>
+                                <div class="d-grid my-4">
+                                    <button class="btn btn-dark btn-lg" type="submit" (click)="onSubmit()">
+                                        Sign Up
+                                    </button>
+                                </div>
+                                @if (isSubmitted && authError) {
+                                <div class="col-12">
+                                    <small class="d-block text-danger">{{ authMessage }}</small>
+                                </div>
+                                }
+                                <p class="text-2 text-muted text-center">
+                                    Already a member? <a routerLink="/user">Sign In</a>
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

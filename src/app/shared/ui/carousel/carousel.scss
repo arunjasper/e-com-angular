@@ -1,0 +1,58 @@
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    /* Hides slides outside the current view */
+    width: 100%;
+}
+
+.carousel-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    /* Smooth transition for sliding */
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-item {
+   // min-width: 100%;
+    /* Each item takes the full width of the container */
+    box-sizing: border-box;
+    text-align: center;
+    flex-shrink: 0;
+    /* Prevents items from shrinking */
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Style for custom controls */
+.carousel-control {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: xx-large;
+    z-index: 10;
+}
+
+.carousel-control.prev {
+    left: 0;
+}
+
+.carousel-control.next {
+    right: 0;
+}
+
+.product-atc {
+    background-color: #f2f4f5;
+    height: 2.5em;
+    width: 2.5em;
+    transition: 0.5s all;
+}
+

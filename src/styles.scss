@@ -1,1 +1,220 @@
 /* You can add global styles to this file, and also import other style files */
+/*-- Site Style --*/
+*,
+*::after,
+*::before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background-color: #ffffff;
+    line-height: 24px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: normal;
+    visibility: visible;
+    font-family: "Open Sans", sans-serif;
+    color: #444444;
+    position: relative;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+    font-style: normal;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+a,
+button {
+    color: inherit;
+    display: inline-block;
+    line-height: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a,
+button,
+img,
+input,
+span {
+    -webkit-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    box-shadow: none;
+
+}
+
+*:focus {
+    outline: none !important;
+}
+
+a:focus {
+    color: inherit;
+    outline: none;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+button,
+input[type="submit"] {
+    cursor: pointer;
+}
+
+ul {
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+}
+
+.padding-y {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.padding-y-sm {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.btn-warning,
+.bg-warning {
+    color: #fff;
+    background-color: #879221 !important;
+    border-color: #879221;
+}
+
+.bg-grey {
+    background-color: #f0f1f8;
+}
+
+.bg-silver {
+    background-color: silver;
+}
+
+.form-control:focus,
+.form-select:focus,
+.btn:focus {
+    box-shadow: none;
+}
+
+.text-warning {
+    color: #879221 !important;
+}
+
+
+/*---------------Place holders style ----------------*/
+
+.empty-img-default-ellipse {
+    fill-opacity: 0.8;
+    fill: #f5f5f5;
+}
+
+.empty-img-default-path-1 {
+    fill: #aeb8c2;
+}
+
+.empty-img-default-path-2 {
+    fill: url(#linearGradient-1);
+}
+
+.empty-img-default-path-3 {
+    fill: #f5f5f7;
+}
+
+.empty-img-default-path-4 {
+    fill: #dce0e6;
+}
+
+.empty-img-default-path-5 {
+    fill: #dce0e6;
+}
+
+.empty-img-default-g {
+    fill: #fff;
+}
+
+/*---------shared styles ------------*/
+
+.pg-primary {
+    background-color: #879221;
+}
+
+.fs-16 {
+    font-size: 16px;
+}
+
+.text-shadow {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+
+.btn-circle {
+    min-width: 32px;
+    padding: 7px;
+    text-align: center;
+    border-radius: 50px;
+    border: none;
+    /* border-color: #fb5231; */
+}
+
+.border-radius-50{
+    border-radius: 50px ;
+}
+
+.border-radius-25{
+    border-radius: 25px ;
+}
+
+.btn-round {
+    min-width: 32px;
+    padding: 5px 10px;
+    text-align: center;
+    border-radius: 50px;
+    border: none;
+}
+
+.btn-favourite.btn-circle {
+    padding: 3px 7px;
+
+}
+
+.slide {
+    background: #F1F5F9;
+    border: 2px dashed #CBD5E1;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    font-size: 2rem;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: 900;
+    letter-spacing: -.05em;
+    text-transform: uppercase;
+}
+

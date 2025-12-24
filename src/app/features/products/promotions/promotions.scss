@@ -1,0 +1,31 @@
+.carousel-host {
+    margin: 5vh auto;
+}
+
+.campaign {
+    height: 50px;
+    width: 950px;
+}
+
+.ad-content {
+    padding: 35px;
+    height: 38px;
+    width: 70%;
+    font-size: 26px;
+    font-weight: 700;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.bg {
+    background-image: linear-gradient(to right, #ba77cb, #4ba4d3);
+}
+
+.d-flex {
+    display: flex;
+}
+
+.img {
+    width: 30%;
+    height: 110px;
+}

@@ -1,0 +1,132 @@
+<section class="bg-grey p-2 ">
+    <div class="container">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item">
+                <a routerLink="">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a routerLink="">Product</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                {{product?.title }}
+            </li>
+        </ol>
+    </div>
+</section>
+
+<section class="padding-y">
+    <div class="container">
+        <div class="row">
+            <aside class="col-lg-4">
+
+            </aside>
+            <main class="col-lg-6">
+                <article class="ps-lg-3">
+                    <h4 class="title text-dark">
+                        {{product?.title }}
+                    </h4>
+                    <div class="rating-wrap my-3">
+                        <ul class="rating-stars">
+                            <li style="width:80%" class="stars-active">
+                                <img src="images/stars-active.svg" alt="">
+                            </li>
+                            <li>
+                                <img src="images/starts-disable.svg" alt="">
+                            </li>
+                        </ul>
+                        <b class="label-rating text-warning"> 4.5</b>
+                        <i class="dot"></i>
+                        <span class="label-rating text-muted">
+                            <i class="fa fa-shopping-basket"></i> 154 orders
+                        </span>
+                        <i class="dot"></i>
+                        <span class="label-rating text-success">In stock</span>
+                    </div>
+                    <div class="mb-3">
+                        <span class="price h5">${{product?.price}}</span>
+                        <span class="text-muted">/per box</span>
+                    </div>
+                    <p>
+                        {{product?.description || loremText }}
+                    </p>
+                    <dl class="row">
+                        <dt class="col-3">Type:</dt>
+                        <dd class="col-9">{{product?.category?.name}}</dd>
+                        <dt class="col-3">Color:</dt>
+                        <dd class="col-9">Brown</dd>
+                        <dt class="col-3">Material:</dt>
+                        <dd class="col-9">Cotton, Jeans </dd>
+                        <dt class="col-3">Brand:</dt>
+                        <dd class="col-9">Reebook </dd>
+                    </dl>
+                    <hr>
+                    <div class="row mb-4">
+                        <div class="col-md-4 col-6 mb-2">
+                            <label class="form-label">Size</label>
+                            <select class="form-select">
+                                <option>Small</option>
+                                <option>Medium</option>
+                                <option>Large</option>
+                            </select>
+                        </div>
+                        @if (productInCartList) {
+                        <div class="col-md-4 col-6 mb-3">
+                            <label class="form-label d-block">Quantity</label>
+                            <div class="input-group input-spinner">
+                                <div class="quantity-selector">
+                                    <button type="button" class="btn  btn-quantity"
+                                        (click)="updateCartItemQuantity(quantity , product  , '-')"
+                                        [disabled]=" quantity == 1">
+                                        <span>-</span>
+                                    </button>
+                                    <div class="quantity-number">{{quantity}}</div>
+                                    <button type="button" class="btn btn-quantity"
+                                        (click)="updateCartItemQuantity(quantity! , product  , '+')">
+                                        <span>+</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                    <a href="#" class="btn  btn-primary me-2"
+                        (click)="$event.preventDefault(); addProductToCart(product)">
+                        <i class="me-1 fa fa-shopping-basket"></i>
+                        {{productInCartList ? 'Added to cart':'Add to cart'}}
+                    </a>
+                    @if (!isProductInWishList) {
+                    <a href="#" (click)="$event.preventDefault(); addProductToWishList(product)"
+                        class="btn  btn-light me-2">
+                        <i class="fa-regular fa-heart text-danger"></i>
+                        Save
+                    </a>
+                    }
+                    @if (isProductInWishList) {
+                    <a href="#" (click)="$event.preventDefault(); addProductToWishList(product)"
+                        class="btn  btn-light me-2">
+                        <i class="me-1 fa fa-heart text-danger"></i> Saved
+                    </a>
+                    }
+                </article>
+            </main>
+        </div>
+        @if(categoryProducts){
+        <div class="row my-5 position-relative">
+            <div class="title text-md-center">
+                <span>best match</span>
+                <h3 >Related products</h3>
+            </div>
+            <div>
+                <div class="carousel-host">
+                <ctl-carousel [items]="categoryProducts" [itemTemplate]="itemTemplate" />
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</section>
+
+<!-- Define the template with a local variable 'item' -->
+<ng-template #itemTemplate let-item>
+    <app-product [product]="item" />
+</ng-template>

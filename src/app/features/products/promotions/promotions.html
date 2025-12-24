@@ -1,0 +1,11 @@
+<div class="container mt-4">
+    <ctl-carousel [items]="promotions" [itemTemplate]="itemTemplate"  [itemsVisible]=1 [runSlides]="true" />
+</div>
+
+<!-- Define the template with a local variable 'item' -->
+<ng-template #itemTemplate let-item>
+    <div class="d-flex bg">
+        <div class="ad-content"> {{item.message}}</div>
+        <img class="img" src='images/ads/{{item.url}}' />
+    </div>
+</ng-template>

@@ -1,0 +1,56 @@
+/* src/app/toast/toast.component.css */
+.toast {
+    position: fixed;
+    min-width: 250px;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.top-left {
+    top: 30px;
+    left: 30px;
+}
+
+.top-middle {
+    top: 30px;
+    align-content: center;
+}
+
+.top-right {
+    top: 30px;
+    right: 30px
+}
+
+.bottom-left {
+    bottom: 30px;
+    left: 30px;
+}
+
+.bottom-middle {
+    bottom: 30px;
+}
+
+.bottom-right {
+    bottom: 30px;
+    right: 30px;
+}
+
+
+.toast-content {
+    padding: 16px;
+    color: white;
+    border-radius: 4px;
+}
+
+.success {
+    background-color: #28a745;
+}
+
+.error {
+    background-color: #dc3545;
+}
+
+.info {
+    background-color: #879221;
+}

@@ -1,0 +1,7 @@
+<div id="mySidenav" class="sidenav" [class.expand]="open">
+  <a href="#" class="closebtn" (click)="closeNav()">&times;</a>
+  <ng-content />
+</div>
+<span class="header-shop-links" (click)="openNav()">
+  <ng-content select="[icon]" />
+</span>
