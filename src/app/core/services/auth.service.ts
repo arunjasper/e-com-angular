@@ -17,11 +17,6 @@ export class AuthService {
 
   refreshTokenTimeout: any;
 
-  /** Inserted by Angular inject() migration for backwards compatibility */
-  constructor(...args: unknown[]);
-  
-  constructor() { }
-
   login(email: string, password: string): Observable<any> {
     return this.http.post<any>(`${environment.api}v1/auth/login`, { email, password });
   }

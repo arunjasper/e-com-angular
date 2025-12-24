@@ -1,12 +1,5 @@
-
 .content {
     padding: 0 ;
-}
-
-@media only screen and (max-width: 767px) {
-    .content {
-        padding: 0px;
-    }
 }
 
 .spinner-wrapper {
@@ -78,17 +71,14 @@
 }
 
 @keyframes waveUp {
-
     0%,
     15% {
         top: 50%;
     }
-
     45%,
     65% {
         top: 42.5%;
     }
-
     85%,
     100% {
         top: 50%;
@@ -96,19 +86,16 @@
 }
 
 @keyframes smallExtend {
-
     0%,
     8% {
         background-color: #909090;
         height: 20px;
     }
-
     14%,
     34% {
         background-color: #879221;
         height: 47.5px;
     }
-
     46%,
     100% {
         background-color: #909090;
@@ -117,19 +104,16 @@
 }
 
 @keyframes largeExtend {
-
     0%,
     8% {
         background-color: #909090;
         height: 20px;
     }
-
     14%,
     34% {
         background-color: #879221;
         height: 82.5px;
     }
-
     46%,
     100% {
         background-color: #909090;
@@ -152,7 +136,6 @@
     flex-basis: auto;
     width: auto;
 }
-
 
 /*-- Header Top Border --*/
 .header-bottom-border {

@@ -22,10 +22,6 @@ export class Product implements OnInit {
   readonly product = input<any>();
   WishItems!: WishItem[];
 
-  /** Inserted by Angular inject() migration for backwards compatibility */
-  constructor(...args: unknown[]);
-  constructor() { }
-
   ngOnInit(): void {
     this.getWishList();
   }

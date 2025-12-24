@@ -11,7 +11,7 @@ import { ToastService } from '../../../shared/ui/toast/toast.service';
 
 @Component({
   selector: 'app-product-details',
-  imports: [Product, RouterLink,  Carousel],
+  imports: [Product, RouterLink, Carousel],
   templateUrl: './product-details.html',
   styleUrl: './product-details.scss',
 })
@@ -37,11 +37,14 @@ export class ProductDetails implements OnInit {
   isProductInWishList: boolean = false;
   productInCartList: any;
 
-  /** Inserted by Angular inject() migration for backwards compatibility */
-  constructor(...args: unknown[]);
-
-  constructor() { }
-
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.productId = params['id'];
+      this.getProduct();
+      this.getCartList();
+      this.getWishList();
+    });
+  }
 
   ZoomImage(event: any) {
     const { left, top, width, height } = event.target.getBoundingClientRect();
@@ -50,18 +53,14 @@ export class ProductDetails implements OnInit {
     this.backgroundPos = `${x}% ${y}%`;
   }
 
-
   nextSlide(event: any) {
     if (event.dragging == false) {
       this.startPosition = event.data.startPosition;
       const anyService = this.myCarousel() as any;
-    //  const carouselService = anyService.carouselService as CarouselService;
-     // carouselService.to(this.startPosition, 3)
     }
   }
 
-
-  getproduct() {
+  getProduct() {
     this.productService.getSingleProduct(this.productId).subscribe((data) => {
       this.product = data;
       this.categoryId = data.category.id;
@@ -77,7 +76,7 @@ export class ProductDetails implements OnInit {
   getCartList() {
     this.cartService.cart$.subscribe((cart) => {
       this.cartList = cart?.items!;
-      if(this.product){
+      if (this.product) {
         this.productInCartList = this.checkProductInCartList(this.product);
       }
     });
@@ -86,7 +85,7 @@ export class ProductDetails implements OnInit {
   getWishList() {
     this.wishlistService.wishList$.subscribe((cart) => {
       this.WishItems = cart?.items!;
-      if(this.product){
+      if (this.product) {
         this.isProductInWishList = this.productInWishList(this.product);
       }
     });
@@ -133,14 +132,13 @@ export class ProductDetails implements OnInit {
     };
     if (this.isProductInWishList) {
       this.wishlistService.deleteWishItem(WishItem.product.id);
-      this.toastService.show('Product removed from wishlist','error');
+      this.toastService.show('Product removed from wishlist', 'error');
     }
     else {
       this.wishlistService.setWishItem(WishItem);
-      this.toastService.show('Product added to wishlist successfully','success');
+      this.toastService.show('Product added to wishlist successfully', 'success');
     }
   }
-
 
   getProductsByCategory(categoryId: number) {
     console.log(categoryId)
@@ -148,15 +146,4 @@ export class ProductDetails implements OnInit {
       this.categoryProducts = data;
     })
   }
-
-  ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.productId = params['id'];
-      this.getproduct();
-      this.getCartList();
-      this.getWishList();
-    });
-
-  }
-
 }

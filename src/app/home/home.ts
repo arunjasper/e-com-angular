@@ -1,4 +1,4 @@
-import { Component, HostListener, inject, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, inject, signal } from '@angular/core';
 import { RouteConfigLoadEnd, RouteConfigLoadStart, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { CartService } from '../core/services/cart.service';
 import { AuthService } from '../core/services/auth.service';
@@ -20,6 +20,7 @@ export class Home {
   router = inject(Router);
   cartService = inject(CartService);
   auth = inject(AuthService);
+  cdr = inject(ChangeDetectorRef);
   wishlistService = inject(WishlistService);
   toastService = inject(ToastService);
   toastMessage = signal<any | null>(null);
@@ -39,7 +40,8 @@ export class Home {
       } else if (event instanceof RouteConfigLoadEnd) {
         setTimeout(() => {
           this.isLoading = false;
-        }, 1500)
+          this.cdr.markForCheck();
+        }, 1000)
       }
     });
   }

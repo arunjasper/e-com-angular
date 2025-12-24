@@ -9,11 +9,6 @@ export class AuthGuard implements CanActivate {
   private router = inject(Router);
   private localStorageToken = inject(LocalstorageService);
 
-  /** Inserted by Angular inject() migration for backwards compatibility */
-  constructor(...args: unknown[]);
-
-  constructor() {}
-
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const token = this.localStorageToken.getToken();
 

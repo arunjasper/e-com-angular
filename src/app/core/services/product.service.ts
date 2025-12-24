@@ -9,11 +9,6 @@ import { environment } from '../../../environments/environment';
 export class ProductService {
   private _HttpClient = inject(HttpClient);
 
-  /** Inserted by Angular inject() migration for backwards compatibility */
-  constructor(...args: unknown[]);
-
-  constructor() { }
-
   getProduct(offset: number, limit: number): Observable<any> {
     return this._HttpClient.get<any>(`${environment.api}v1/products?offset=${offset}&limit=${limit}`)
   }

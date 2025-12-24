@@ -7,11 +7,6 @@ import { environment } from '../../../environments/environment';
 export class JwtInterceptor implements HttpInterceptor {
   private localstorageToken = inject(LocalstorageService);
 
-  /** Inserted by Angular inject() migration for backwards compatibility */
-  constructor(...args: unknown[]);
-
-  constructor() {}
-
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token = this.localstorageToken.getToken();
     const isAPIUrl = request.url.startsWith(environment.api);

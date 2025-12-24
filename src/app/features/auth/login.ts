@@ -25,11 +25,6 @@ export class Login implements OnInit {
   authError: boolean = false;
   authMessage:string = 'Email or Password are wrong';
 
-  /** Inserted by Angular inject() migration for backwards compatibility */
-  constructor(...args: unknown[]);
-
-  constructor() {}
-
   initLoginForm() {
     this.loginFormGroup = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],

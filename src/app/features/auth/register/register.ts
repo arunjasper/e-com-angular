@@ -24,9 +24,6 @@ export class Register implements OnInit {
   authError: boolean = false;
   authMessage:string = 'Email or Password are wrong';
 
-  /** Inserted by Angular inject() migration for backwards compatibility */
-  constructor(...args: unknown[]);
-  constructor() { }
   initRegisterForm() {
     this.registerFormGroup = this.formBuilder.group({
       name: ['', Validators.required],

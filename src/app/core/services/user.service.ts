@@ -11,27 +11,18 @@ export class UserService {
   private _http = inject(HttpClient);
   private _localstorageService = inject(LocalstorageService);
 
-  /** Inserted by Angular inject() migration for backwards compatibility */
-  constructor(...args: unknown[]);
-
-  constructor() { }
-
-  // httpOptions = {
-  //   headers: new HttpHeaders({
-  //     'Content-Type': 'application/json',
-  //     'Authorization': "Bearer " + this._localstorageService.getToken()
-  //   })
-  // };
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + this._localstorageService.getToken()
+    })
+  };
 
   getUser(): Observable<any> {
     return this._http.get<any>(`${environment.api}v1/auth/profile`);
   }
-  /*
-    ----------------------------
-    ===== Api Not Work =========
-    ----------------------------
-  */ 
-  // updateUser(user: any): Observable<any> {
-  //   return this._http.put<any>(`${environment.api}/v1/users/1`, user);
-  // }
+
+  updateUser(user: any): Observable<any> {
+    return this._http.put<any>(`${environment.api}/v1/users/1`, user);
+  }
 }

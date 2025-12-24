@@ -22,11 +22,6 @@ export class Checkout implements OnInit {
   totalPrice!: number;
   isCartEmpty: boolean = false;
 
-  /** Inserted by Angular inject() migration for backwards compatibility */
-  constructor(...args: unknown[]);
-
-  constructor() { }
-
   getCartList() {
     this._cartService.cart$.subscribe((cart) => {
       this.cartList = cart.items!;
