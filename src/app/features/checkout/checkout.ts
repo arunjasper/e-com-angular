@@ -12,10 +12,8 @@ import { CartService } from '../../core/services/cart.service';
 })
 export class Checkout implements OnInit {
   private router = inject(Router);
-  private _cartService = inject(CartService);
+  private cartService = inject(CartService);
   private formBuilder = inject(FormBuilder);
-
-
   checkoutFormGroup!: FormGroup;
   isSubmitted = false;
   cartList!: CartItem[];
@@ -23,7 +21,7 @@ export class Checkout implements OnInit {
   isCartEmpty: boolean = false;
 
   getCartList() {
-    this._cartService.cart$.subscribe((cart) => {
+    this.cartService.cart$.subscribe((cart) => {
       this.cartList = cart.items!;
       if (this.cartList.length == 0) this.isCartEmpty = true;
       else this.isCartEmpty = false;
@@ -31,7 +29,7 @@ export class Checkout implements OnInit {
   }
 
   getTotalPrice() {
-    this._cartService.cart$.subscribe((cart) => {
+    this.cartService.cart$.subscribe((cart) => {
       this.totalPrice = 0;
       if (cart) {
         cart.items?.map((item) => {
@@ -41,15 +39,12 @@ export class Checkout implements OnInit {
     });
   }
 
-
   initCheckoutForm() {
     this.checkoutFormGroup = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.email, Validators.required]],
       phone: ['', Validators.required],
-      // city: ['', Validators.required],
-      // country: ['', Validators.required],
       postalcode: ['', Validators.required],
       message: [''],
       zip: ['', Validators.required],
@@ -58,16 +53,15 @@ export class Checkout implements OnInit {
     });
   }
 
-
   get checkoutForm() {
     return this.checkoutFormGroup.controls;
   }
+  
   placeOrder() {
     this.isSubmitted = true;
     if (this.checkoutFormGroup.invalid) {
       return;
     }
-
     this.router.navigate(['/checkout/succuss'])
     console.log(this.checkoutForm)
   }
@@ -77,6 +71,5 @@ export class Checkout implements OnInit {
     this.getTotalPrice();
     this.initCheckoutForm();
   }
-
 
 }

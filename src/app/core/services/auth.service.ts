@@ -14,8 +14,9 @@ export class AuthService {
   private http = inject(HttpClient);
   private _token = inject(LocalstorageService);
   private router = inject(Router);
-
   refreshTokenTimeout: any;
+  redirectUrl: string | null = null;
+  isLoggedIn = false;
 
   login(email: string, password: string): Observable<any> {
     return this.http.post<any>(`${environment.api}v1/auth/login`, { email, password });
@@ -31,9 +32,11 @@ export class AuthService {
     if (token) {
       const tokenDecode = JSON.parse(atob(token.split('.')[1]));
       if (Math.floor(new Date().getTime() / 1000) >= tokenDecode.exp) {
+        this.isLoggedIn=false;
         return false;
       }
       else {
+        this.isLoggedIn=true;
         return true;
       }
     }
@@ -42,6 +45,7 @@ export class AuthService {
 
   logout() {
     this._token.removeToken();
+    this.isLoggedIn = false;
     this.router.navigate(['/auth']);
   }
 
@@ -49,12 +53,9 @@ export class AuthService {
     const token = this._token.getToken();
     return this.http.post<any>(`${environment.api}v1/auth/refresh-token`, { token }).pipe(
       map((response: any) => {
-
         this._token.setToken(response.access_token);
-
         const expiration = response.refresh_token;
         localStorage.setItem('expiration', expiration);
-
         this.startRefreshTokenTimer();
         return true;
       })
@@ -62,12 +63,10 @@ export class AuthService {
   }
 
   startRefreshTokenTimer() {
-    console.log('start Refresh Token Timer');
     const jwtToken = this._token.getToken();
     const jwtTokenDecode = JSON.parse(atob(jwtToken.split('.')[1]));
     const expires = new Date(jwtTokenDecode.exp * 1000);
-    const timeout = expires.getTime() - Date.now() - (60 * 1000);
-    console.log('timeout', timeout);   
+    const timeout = expires.getTime() - Date.now() - (60 * 1000); 
     this.refreshTokenTimeout = setTimeout(() => this.refreshToken().subscribe(), timeout);
   }
 

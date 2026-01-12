@@ -7,10 +7,12 @@ import { Wishlist } from "./wishlist/wishlist";
 import { Cart } from "./cart/cart";
 import { ToastService } from '../shared/ui/toast/toast.service';
 import { Toast } from '../shared/ui/toast/toast';
+import { Confirm } from "../shared/ui/confirm/confirm";
+import { LocalstorageService } from '../core/services/localstorage.service';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterOutlet, RouterLink, Wishlist, Cart, Toast],
+  imports: [RouterOutlet, RouterLink, Wishlist, Cart, Toast, Confirm],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
@@ -19,17 +21,17 @@ export class Home {
   isLoading?: boolean;
   router = inject(Router);
   cartService = inject(CartService);
-  auth = inject(AuthService);
+  authService = inject(AuthService);
   cdr = inject(ChangeDetectorRef);
   wishlistService = inject(WishlistService);
   toastService = inject(ToastService);
+  localStorageService = inject(LocalstorageService);
   toastMessage = signal<any | null>(null);
   cartCount = 0;
   wishCount = 0;
   sticky: boolean = false;
   loggedIn: boolean = false;
-
-
+  isVisible: boolean = false;
 
   constructor() {
     this.toastMessage = this.toastService.toast$
@@ -64,12 +66,25 @@ export class Home {
     this.wishlistService.wishList$.subscribe((wishList) => {
       this.wishCount = wishList?.items?.length ?? 0;
     });
-    this.loggedIn = this.auth.loggedIn();
-    console.log(this.loggedIn)
+    this.loggedIn = this.authService.loggedIn();
   }
 
   onActivate(event: any) {
     window.scroll(0, 0);
+  }
+
+  onSignOut() {
+    this.isVisible = true;
+  }
+
+  signOut() {
+    this.authService.isLoggedIn=false;
+    this.localStorageService.removeToken();
+    this.router.navigate([''])
+  }
+
+  closeConfirmModal() {
+    this.isVisible = false;
   }
 
 }

@@ -52,7 +52,7 @@ export class Wishlist implements OnInit {
 
   deleteWishItem() {
     this.wishlistService.deleteWishItem(this.deleteProductId);
-    this.closeCofirmModal();
+    this.closeConfirmModal();
 
     this.toastService.show('Product removed from wishlist', 'error');
   }
@@ -64,7 +64,6 @@ export class Wishlist implements OnInit {
   }
 
   addProductToCart(item: any) {
-    console.log(item)
     const cartItem: CartItem = {
       product: item,
       quantity: 1
@@ -78,12 +77,12 @@ export class Wishlist implements OnInit {
     this.router.navigate(['/products', productId]);
   }
 
-  openCofirmModal(productId: string) {
+  openConfirmModal(productId: string) {
     this.isVisible = true;
     this.deleteProductId = productId
   }
 
-  closeCofirmModal() {
+  closeConfirmModal() {
     this.isVisible = false;
   }
 

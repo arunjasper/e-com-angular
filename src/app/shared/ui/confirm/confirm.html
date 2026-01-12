@@ -1,9 +1,9 @@
-<div class="modal fade" [class.show]="isVisible()" id="CofirmModal" tabindex="-1" role="dialog"
-    aria-labelledby="CofirmModalLabel" [style]="isVisible()?'display: block;':''">
+<div class="modal fade" [class.show]="isVisible()" id="ConfirmModal" tabindex="-1" role="dialog"
+    aria-labelledby="ConfirmModalLabel" [style]="isVisible()?'display: block;':''">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="CofirmModalLabel">{{title()}}</h5>
+            <div class="modal-header d-flex justify-content-between">
+                <h5 class="modal-title" id="ConfirmModalLabel">{{title()}}</h5>
                 <button type="button text-muted" class="close" data-dismiss="modal" aria-label="Close"
                     (click)="close()">
                     <span aria-hidden="true">&times;</span>

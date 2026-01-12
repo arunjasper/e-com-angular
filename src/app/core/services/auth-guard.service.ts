@@ -1,27 +1,23 @@
 import { Injectable, inject } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
-import { LocalstorageService } from './localstorage.service';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
   private router = inject(Router);
-  private localStorageToken = inject(LocalstorageService);
+  private authService = inject(AuthService);
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const token = this.localStorageToken.getToken();
-
-    if (token) {
-      const tokenDecode = JSON.parse(atob(token.split('.')[1]));
-      if (!this._tokenExpired(tokenDecode.exp)) return true;
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): boolean {
+    if (this.authService.isLoggedIn) {
+      return true;
+    } else {
+      this.authService.redirectUrl = state.url;
+      this.router.navigate(['/login']);
+      return false; // Prevent current navigation
     }
-
-    this.router.navigate(['/auth']);
-    return false;
-  }
-
-  private _tokenExpired(expiration:any): boolean {
-    return Math.floor(new Date().getTime() / 1000) >= expiration;
   }
 }

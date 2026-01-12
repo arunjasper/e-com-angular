@@ -16,7 +16,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '20' # Use a recent Node.js version
+        node-version: '22.12' # Use a recent Node.js version
 
     - name: Install dependencies
       run: npm install
@@ -28,4 +28,4 @@ jobs:
       uses: angular-schule/pages-action@v2 # A popular action for this purpose
       with:
         github_token: ${{ secrets.GH_TOKEN }}
-        build_path: dist/your-project-name # Adjust to your output path in angular.json
+        build_path: dist/e-com-angular # Adjust to your output path in angular.json

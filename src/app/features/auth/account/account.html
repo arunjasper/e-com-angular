@@ -1,15 +1,16 @@
-<article class="card">
-    <div class="content-body">
+<div class="container p-2">
+    <article >
+    <div class="content-body box-border p-3">
         <figure class="itemside align-items-center">
             <div class="aside">
                 <span class="bg-gray icon-md rounded-circle">
-                    <img src='assets/images/avatar.jpg' class="icon-md rounded-circle">
+                    <img [src]='profile.avatar' class="icon-md rounded-circle">
                 </span>
             </div>
             <figcaption class="info d-flex justify-content-between align-items-center">
-                <h6 class="title">{{profile.name}}</h6>
+                <h5 class="title">{{profile.name}}</h5>
                 <button class="btn btn-warning rounded py-2 px-1" (click)="openEditModal(profile)">
-                    <i class="fa fa-pen px-2"></i>
+                    <i class="fa fa-pen "></i>
                 </button>
             </figcaption>
         </figure>
@@ -44,7 +45,8 @@
                     <b class="mx-2 text-muted">
                         <i class="fa fa-map-marker-alt"></i>
                     </b>
-                    Moscow city, Street name, Building lenin, House 77
+                    111 Central Avenue,
+                    California, United States
                 </article>
             </div>
         </div>
@@ -54,7 +56,7 @@
     aria-labelledby="EditModalLabel" [style]="isVisible?'display: block;':''">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header d-flex justify-content-between">
                 <h5 class="modal-title" id="EditModalLabel">Edit User Data</h5>
                 <button type="button text-muted" class="close" data-dismiss="modal" aria-label="Close"
                     (click)="closeEditModal()">
@@ -100,8 +102,9 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"
                     (click)="closeEditModal()">Cancel</button>
-                <button class="btn btn-warning" type="submit" (click)="onSubmit()">Eidt</button>
+                <button class="btn btn-warning" type="submit" (click)="onSubmit()">Edit</button>
             </div>
         </div>
     </div>
+</div>
 </div>

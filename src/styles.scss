@@ -128,6 +128,11 @@ ul {
     color: #879221 !important;
 }
 
+.box-border {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    background-color: rgb(232, 232, 231);
+}
 
 /*---------------Place holders style ----------------*/
 
@@ -218,3 +223,10 @@ ul {
     text-transform: uppercase;
 }
 
+.pointer{
+    cursor: pointer;
+}
+
+.pl-1{
+    padding-left: 1rem;
+}

@@ -12,14 +12,11 @@ export class DrawerComponent {
   open = false;
 
   className = 'sidenav'
-  openNav() {
-    // this.className ='expand'
-    console.log('opened')
+  openNav() {  
     this.open = true;
   }
 
   closeNav() {
-    // this.className =''
     this.open = false;
   }
 

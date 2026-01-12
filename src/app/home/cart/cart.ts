@@ -42,7 +42,7 @@ export class Cart implements OnInit {
 
   deleteCartItem() {
     this.cartService.deleteCartItem(this.deleteProductId);
-    this.closeCofirmModal();
+    this.closeConfirmModal();
     this.toastService.show('Product removed from cart');
   }
 
@@ -82,12 +82,12 @@ export class Cart implements OnInit {
     this.router.navigate(['/products', productId]);
   }
 
-  openCofirmModal(productId: string) {
+  openConfirmModal(productId: string) {
     this.isVisible = true;
     this.deleteProductId = productId
   }
 
-  closeCofirmModal() {
+  closeConfirmModal() {
     this.isVisible = false;
   }
   ngOnInit(): void {

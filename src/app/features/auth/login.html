@@ -44,7 +44,7 @@
                                     <div
                                         [classList]="loginForm['email'].invalid && isSubmitted?'input-group':'mb-3 input-group'">
                                         <input type="email" class="form-control bg-light border-light" id="emailAddress"
-                                            [class.is-invalid]="loginForm['email'].invalid && isSubmitted"
+                                            [class.is-invalid]="loginForm['email'].invalid && isSubmitted" [value]="'john@mail.com'"
                                             placeholder="Email or Username" formControlName="email">
                                         <span class="input-group-text text-muted">
                                             <i class="fas fa-envelope"></i>

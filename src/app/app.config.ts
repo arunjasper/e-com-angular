@@ -1,13 +1,18 @@
-import { APP_INITIALIZER, ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { ApplicationConfig, provideAppInitializer, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideNgxSkeletonLoader } from 'ngx-skeleton-loader';
-
 import { routes } from './app.routes';
-import { AppConfigService, initializeAppFactory } from './core/services/app.config.service';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { authTokenInterceptor } from './core/services/interceptors';
+import { initializeApp } from './core/services/app.initializer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideZonelessChangeDetection(),
+    provideHttpClient(
+      withInterceptors([authTokenInterceptor]) // Register the interceptor
+    ),
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideAnimations(),
@@ -17,11 +22,6 @@ export const appConfig: ApplicationConfig = {
         height: '30px',
       },
     }),
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeAppFactory,
-      deps: [AppConfigService],
-      multi: true // `multi: true` allows multiple initializer functions
-    }
+    provideAppInitializer(initializeApp)
   ]
 };

@@ -63,7 +63,7 @@
         </button>
       </div>
       <div class="btn-close">
-        <a href="#" (click)="$event.preventDefault(); openCofirmModal(item.product.id);">
+        <a href="#" (click)="$event.preventDefault(); openConfirmModal(item.product.id);">
           <i class="fa">&#xf014;</i>
         </a>
       </div>
@@ -74,6 +74,6 @@
 
 <div class="mask" [class.d-none]="!isOpenWishList" (click)="closeSidebar()"></div>
 
-<app-confirm (confirm)="deleteWishItem()" (cancel)="closeCofirmModal()" [isVisible]="isVisible"
-  [title]="'Cofirm this action'" [message]="'Are your sure to remove product from wishlist ?'" [confirmBtnText]="'ok'"
+<app-confirm (confirm)="deleteWishItem()" (cancel)="closeConfirmModal()" [isVisible]="isVisible"
+  [title]="'Confirm this action'" [message]="'Are your sure to remove product from wishlist ?'" [confirmBtnText]="'ok'"
   [cancelBtnText]="'Cancel'" />

@@ -39,7 +39,7 @@ export class Register implements OnInit {
     this.authService.register(this.registerForm['name'].value,this.registerForm['email'].value, this.registerForm['password'].value).subscribe(
       (user) => {
         this.authError = false;
-        this.router.navigate(['/auth']);
+        this.router.navigate(['/login']);
       },
       (error: HttpErrorResponse) => {
         console.log(error)

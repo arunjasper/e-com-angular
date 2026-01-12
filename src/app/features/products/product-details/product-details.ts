@@ -141,7 +141,6 @@ export class ProductDetails implements OnInit {
   }
 
   getProductsByCategory(categoryId: number) {
-    console.log(categoryId)
     this.productService.getProductsByCategory(categoryId).subscribe((data) => {
       this.categoryProducts = data;
     })

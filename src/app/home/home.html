@@ -6,24 +6,29 @@
           <div class="col-lg-2 col-sm-8 col-8 mt-15 mb-15">
             <div class="header-logo ">
               <a routerLink="">
-              <span class="text-shadow text-white">E-Shoppe</span>
+                <span class="text-shadow text-white">E-Shoppe</span>
                 <i class="fa-solid fa-shopping-basket text-white"></i>
               </a>
             </div>
           </div>
-          <div class="col-lg-3 col-sm-3 col-4 order-lg-last">
+          <div class="col-lg-4 col-sm-3 col-4 order-lg-last">
             <div class="header-shop-links float-end">
-              @if (loggedIn) {
-              <a routerLink="/account" class="d-flex userProfile-Link">
-                <img src="images/avatar.jpg" class="d-inline rounded-circle pb-1 mr-1" width="28" height="28" alt="avater"
-                  srcset="">
-                <span class="text-white text-shadow"> Account</span>
-              </a>
+              @if (authService.loggedIn()) {
+              <span class="logout" >
+                <a routerLink="/account" class="d-flex userProfile-Link">
+                  <img src="images/avatar.jpg" class="d-inline rounded-circle pb-1 mr-1" width="28" height="28"
+                    alt="avater" srcset="">
+                  <span class="text-white text-shadow"> Account</span>
+                </a>
+                <span class="text-white pl-1 pointer" (click)="onSignOut()">
+                  <i class="fa-solid fa-sign-out text-white " aria-hidden="true"></i>SignOut
+                </span>
+              </span>
               }
               @else{
-              <a  class="header-wishlist" routerLink="/user">
-                <span class="text-white text-shadow">Sign In</span>
-                <i class="fa-solid fa-user-circle text-white"></i>
+              <a class="header-wishlist text-white" routerLink="/login">
+                <span class=" text-shadow">SignIn</span>
+                <i class="fa-solid fa-sign-in text-white" aria-hidden="true"></i>
               </a>
               }
               <a href="#" class="header-wishlist" (click)="$event.preventDefault();wishlist.openWishList()">
@@ -36,7 +41,7 @@
               </a>
             </div>
           </div>
-          <div class="col-lg-6  order-12 order-xs-12 order-lg-2 mt-10 mb-10">
+          <div class="col-lg-5  order-12 order-xs-12 order-lg-2 mt-10 mb-10">
             <div class="">
               <form action="#" class="">
                 <div class="input-group">
@@ -93,7 +98,7 @@
             </p>
             <p class="contact-info">
               <span><i class="fa-solid fa-phone"></i> Phone</span>
-              <a href="tel:+1 631 1234 5678">+1 408 9876 4321</a>
+              <a href="tel:+1 222 333 4444">+1 222 333 4444</a>
             </p>
             <p class="contact-info">
               <span> <i class="fa-solid fa-envelope"></i> Mail</span>
@@ -144,11 +149,13 @@
         </div>
       </div>
     </footer>
-
-
   </div>
 </div>
-
- @if (toastMessage()) {
-    <ctl-toast [message]="toastMessage().message" [type]="toastMessage().type" />
-  }
+<div>
+  <app-confirm (confirm)="signOut()" (cancel)="closeConfirmModal()" [isVisible]="isVisible"
+    [title]="'Confirm this action'" [message]="'You have items in your cart. Are you sure you want to sign out?'"
+    [confirmBtnText]="'ok'" [cancelBtnText]="'Cancel'" />
+</div>
+@if (toastMessage()) {
+<ctl-toast [message]="toastMessage().message" [type]="toastMessage().type" />
+}

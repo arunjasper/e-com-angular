@@ -23,12 +23,12 @@ export class Login implements OnInit {
   loginFormGroup!: FormGroup;
   isSubmitted: boolean = false;
   authError: boolean = false;
-  authMessage:string = 'Email or Password are wrong';
+  authMessage: string = 'Email or Password are wrong';
 
   initLoginForm() {
     this.loginFormGroup = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      email: ['john@mail.com', [Validators.required, Validators.email]],
+      password: ['changeme', Validators.required]
     });
   }
   onSubmit() {
@@ -41,7 +41,15 @@ export class Login implements OnInit {
         this.authError = false;
         this.localstorageService.setToken(user.access_token);
         this.authService.startRefreshTokenTimer();
-        this.router.navigate(['/']);
+        this.authService.isLoggedIn = true;
+        // Get the stored redirect URL, default to home page if not set
+        const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/';
+
+        // Navigate to the intended URL and clear the stored URL
+        this.router.navigate([redirect]);
+        this.authService.redirectUrl = null; // Clear the URL after navigation
+
+        //  this.router.navigate(['/']);
       },
       (error: HttpErrorResponse) => {
         this.authError = true;

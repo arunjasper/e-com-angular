@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../../core/services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -14,9 +14,10 @@ export class Account implements OnInit {
   isVisible: boolean = false;
   isSubmitted: boolean = false;
   editUserFormGroup!: FormGroup;
-
   formBuilder = inject(FormBuilder);
   userService = inject(UserService);
+  cdr = inject(ChangeDetectorRef);
+  isLoading = false;
 
   ngOnInit(): void {
     this.userService.getUser().subscribe((user) => {
@@ -32,6 +33,7 @@ export class Account implements OnInit {
       email: [this.profile.email, [Validators.required, Validators.email]],
       role: [this.profile.role, Validators.required]
     });
+    this.cdr.markForCheck();
   }
 
   onSubmit() {
@@ -64,7 +66,4 @@ export class Account implements OnInit {
   closeEditModal() {
     this.isVisible = false;
   }
-
-
-
 }
